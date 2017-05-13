@@ -154,14 +154,14 @@ image::https://cloud.githubusercontent.com/assets/4465905/26027929/bd59e8b2-380e
 So far so good, and yes the Netflix app still works fine.  Looking closely at my Bind logs I can see what's happening:
 
 ....
-Apr 20 17:42:27 dnsvm named[7369]: 13-May-2017 17:42:27.003 queries: info: client 192.168.240.42#40665 (art-0.nflximg.net): query: art-0.nflximg.net IN A + (192.168.240.32)
-Apr 20 17:42:27 dnsvm named[7369]: 13-May-2017 17:42:27.003 rpz: info: client 192.168.240.42#40665 (art-0.nflximg.net): rpz QNAME PASSTHRU rewrite art-0.nflximg.net via art-0.nflximg.net.rpz.netflix
-Apr 20 17:42:27 dnsvm named[7369]: 13-May-2017 17:42:27.766 queries: info: client 192.168.240.42#34179 (ns11.whois.co.kr): query: ns11.whois.co.kr IN A + (192.168.240.32)
-Apr 20 17:42:27 dnsvm named[7369]: 13-May-2017 17:42:27.766 rpz: info: client 192.168.240.42#34179 (ns11.whois.co.kr): rpz QNAME NXDOMAIN rewrite ns11.whois.co.kr via ns11.whois.co.kr.rpz
-Apr 20 17:42:29 dnsvm named[7369]: 13-May-2017 17:42:29.031 queries: info: client 192.168.240.42#59989 (time.samsungcloudsolution.com): query: time.samsungcloudsolution.com IN A + (192.168.240.32)
-Apr 20 17:42:29 dnsvm named[7369]: 13-May-2017 17:42:29.031 rpz: info: client 192.168.240.42#59989 (time.samsungcloudsolution.com): rpz QNAME NXDOMAIN rewrite time.samsungcloudsolution.com via time.samsungcloudsolution.com.rpz
-Apr 20 17:42:29 dnsvm named[7369]: 13-May-2017 17:42:29.033 queries: info: client 192.168.240.42#36357 (time.samsungcloudsolution.com): query: time.samsungcloudsolution.com IN A + (192.168.240.32)
-Apr 20 17:42:29 dnsvm named[7369]: 13-May-2017 17:42:29.033 rpz: info: client 192.168.240.42#36357 (time.samsungcloudsolution.com): rpz QNAME NXDOMAIN rewrite time.samsungcloudsolution.com via time.samsungcloudsolution.com.rpz
+Apr 20 17:42:27 dnsvm named[7369]: 20-Apr-2017 17:42:27.003 queries: info: client 192.168.240.42#40665 (art-0.nflximg.net): query: art-0.nflximg.net IN A + (192.168.240.32)
+Apr 20 17:42:27 dnsvm named[7369]: 20-Apr-2017 17:42:27.003 rpz: info: client 192.168.240.42#40665 (art-0.nflximg.net): rpz QNAME PASSTHRU rewrite art-0.nflximg.net via art-0.nflximg.net.rpz.whitelist
+Apr 20 17:42:27 dnsvm named[7369]: 20-Apr-2017 17:42:27.766 queries: info: client 192.168.240.42#34179 (ns11.whois.co.kr): query: ns11.whois.co.kr IN A + (192.168.240.32)
+Apr 20 17:42:27 dnsvm named[7369]: 20-Apr-2017 17:42:27.766 rpz: info: client 192.168.240.42#34179 (ns11.whois.co.kr): rpz QNAME NXDOMAIN rewrite ns11.whois.co.kr via ns11.whois.co.kr.rpz
+Apr 20 17:42:29 dnsvm named[7369]: 20-Apr-2017 17:42:29.031 queries: info: client 192.168.240.42#59989 (time.samsungcloudsolution.com): query: time.samsungcloudsolution.com IN A + (192.168.240.32)
+Apr 20 17:42:29 dnsvm named[7369]: 20-Apr-2017 17:42:29.031 rpz: info: client 192.168.240.42#59989 (time.samsungcloudsolution.com): rpz QNAME NXDOMAIN rewrite time.samsungcloudsolution.com via time.samsungcloudsolution.com.rpz
+Apr 20 17:42:29 dnsvm named[7369]: 20-Apr-2017 17:42:29.033 queries: info: client 192.168.240.42#36357 (time.samsungcloudsolution.com): query: time.samsungcloudsolution.com IN A + (192.168.240.32)
+Apr 20 17:42:29 dnsvm named[7369]: 20-Apr-2017 17:42:29.033 rpz: info: client 192.168.240.42#36357 (time.samsungcloudsolution.com): rpz QNAME NXDOMAIN rewrite time.samsungcloudsolution.com via time.samsungcloudsolution.com.rpz
 ....
 
 
