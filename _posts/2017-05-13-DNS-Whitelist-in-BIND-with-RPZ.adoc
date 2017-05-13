@@ -1,5 +1,4 @@
 = DNS Whitelist in BIND with RPZ
- :hp-image: /images/rezsez.jpg
  :hp-tags: DNS, Filtering, Firewall, Security
 
 I recently got a Samsung 'smart' TV which is very nice to look at.
