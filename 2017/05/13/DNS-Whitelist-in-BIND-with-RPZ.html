@@ -38,9 +38,9 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/main.min.css?v=1494705996568"/>
-    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/custom.css?v=1494705996568"/>
-    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1494705996568"/>
+    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/main.min.css?v=1494706158312"/>
+    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/custom.css?v=1494706158312"/>
+    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1494706158312"/>
 
 
 
@@ -70,7 +70,7 @@
       GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
     </script>
 
-    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/head-scripts.min.js?v=1494705996568"></script>
+    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/head-scripts.min.js?v=1494706158312"></script>
 
     <link rel="canonical" href="http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html" />
     <meta name="referrer" content="origin" />
@@ -78,12 +78,12 @@
     <meta property="og:site_name" content="REZ SEZ" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="DNS Whitelist in BIND with RPZ" />
-    <meta property="og:description" content="I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in particular.  Being predictably paranoid I therefore blocked the TV&amp;#8217;s IP address on my router to stop" />
+    <meta property="og:description" content="Restricting DNS queries to a specific list of domains. I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in particular.  Being predictably paranoid I therefore blocked the TV&amp;" />
     <meta property="og:url" content="http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html" />
     <meta property="article:published_time" content="2017-05-13T00:00:00.000Z" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="DNS Whitelist in BIND with RPZ" />
-    <meta name="twitter:description" content="I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in particular.  Being predictably paranoid I therefore blocked the TV&amp;#8217;s IP address on my router to stop" />
+    <meta name="twitter:description" content="Restricting DNS queries to a specific list of domains. I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in particular.  Being predictably paranoid I therefore blocked the TV&amp;" />
     <meta name="twitter:url" content="http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html" />
     
     <script type="application/ld+json">
@@ -100,7 +100,7 @@
     "headline": "DNS Whitelist in BIND with RPZ",
     "url": "http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html",
     "datePublished": "2017-05-13T00:00:00.000Z",
-    "description": "I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in particular.  Being predictably paranoid I therefore blocked the TV&amp;#8217;s IP address on my router to stop"
+    "description": "Restricting DNS queries to a specific list of domains. I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in particular.  Being predictably paranoid I therefore blocked the TV&amp;"
 }
     </script>
 
@@ -181,6 +181,9 @@
           <div itemprop="articleBody" class="post-body">
             <div id="preamble">
 <div class="sectionbody">
+<div class="paragraph">
+<p>Restricting DNS queries to a specific list of domains.</p>
+</div>
 <div class="paragraph">
 <p>I recently got a Samsung 'smart' TV which is very nice to look at.</p>
 </div>
@@ -358,7 +361,7 @@ www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.174.58</pre>
 <div class="sect2">
 <h3 id="_additions_for_my_smart_tv_case">Additions for my Smart TV case</h3>
 <div class="paragraph">
-<p>In addition to the above I changed the ACL on for traffic coming from the TV to only allow TCP on ports 80 and 443, which is enough for Netflix, but importantly blocks the TV from using any external DNS (even in normal circumstances it looks like the TV will use 8.8.8.8 in addition to any configured DNS server entered on it).</p>
+<p>In addition to the above I changed the ACL on for traffic coming from the TV to only allow TCP on ports 80 and 443, which is enough for Netflix, but importantly blocks the TV from using any external DNS (even in normal circumstances it looks like the TV uses 8.8.8.8 in addition to any DNS server you give it yourself.)</p>
 </div>
 <div class="paragraph">
 <p>Finally on the TV I changed the DNS server and sure enough the TV thinks something is wrong with DNS:</p>
@@ -448,7 +451,7 @@ Apr 20 17:42:29 dnsvm named[7369]: 13-May-2017 17:42:29.033 rpz: info: client 19
        
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
-    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/foot-scripts.min.js?v=1494705996568"></script>
+    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/foot-scripts.min.js?v=1494706158312"></script>
 
 
   </body>
