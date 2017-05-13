@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://topranks.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sat, 13 May 2017 18:17:22 GMT</lastBuildDate><atom:link href="https://topranks.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://topranks.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sat, 13 May 2017 18:18:56 GMT</lastBuildDate><atom:link href="https://topranks.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>I recently got a Samsung 'smart' TV which is very nice to look at.</p>
@@ -70,7 +70,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>As can be seen the zone definitions reference the location of the zone file for each.  The files are created as follows, using the RPZ syntax.  The first zone, rpz.whitelist, lists the domains I had worked out Netflix used:</p>
+<p>As can be seen the zone definitions reference the location of the zone files for each.  The files are created as follows, using the RPZ syntax.  The first zone, rpz.whitelist, lists the domains I had worked out Netflix used:</p>
 </div>
 <div class="paragraph">
 <p><em>/etc/bind/db.rpz.whitelist</em>:</p>
