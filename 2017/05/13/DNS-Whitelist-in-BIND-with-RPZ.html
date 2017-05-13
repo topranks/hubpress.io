@@ -1,38 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <script>
+        // UNCOMMENT AND USE YOUR VARIABLES FOR DISQUS AND GOOGLE ANALYTICS
+        // var d_id  = '',
+        //     g_id  = 'UA-XXXXXXXX-X', // Format: UA-########-#, Example: UA-11220899-1
+        //     g_url = 'XXXXXXX.XXX' // Format: #####.####, Example: webdesignporto.com
+    </script>
+
     <title>DNS Whitelist in BIND with RPZ</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    
-    
-    <link rel="apple-touch-icon" sizes="57x57" href="//blog.rankinrez.net/themes/uno-zen/assets/img/apple-touch-icon-57x57.png?v=wAAv6Wqe6l?v=1494704478824">
-    <link rel="apple-touch-icon" sizes="60x60" href="//blog.rankinrez.net/themes/uno-zen/assets/img/apple-touch-icon-60x60.png?v=wAAv6Wqe6l?v=1494704478824">
-    <link rel="apple-touch-icon" sizes="72x72" href="//blog.rankinrez.net/themes/uno-zen/assets/img/apple-touch-icon-72x72.png?v=wAAv6Wqe6l?v=1494704478824">
-    <link rel="apple-touch-icon" sizes="76x76" href="//blog.rankinrez.net/themes/uno-zen/assets/img/apple-touch-icon-76x76.png?v=wAAv6Wqe6l?v=1494704478824">
-    <link rel="apple-touch-icon" sizes="114x114" href="//blog.rankinrez.net/themes/uno-zen/assets/img/apple-touch-icon-114x114.png?v=wAAv6Wqe6l?v=1494704478824">
-    <link rel="apple-touch-icon" sizes="120x120" href="//blog.rankinrez.net/themes/uno-zen/assets/img/apple-touch-icon-120x120.png?v=wAAv6Wqe6l?v=1494704478824">
-    <link rel="apple-touch-icon" sizes="144x144" href="//blog.rankinrez.net/themes/uno-zen/assets/img/apple-touch-icon-144x144.png?v=wAAv6Wqe6l?v=1494704478824">
-    <link rel="apple-touch-icon" sizes="152x152" href="//blog.rankinrez.net/themes/uno-zen/assets/img/apple-touch-icon-152x152.png?v=wAAv6Wqe6l?v=1494704478824">
-    <link rel="apple-touch-icon" sizes="180x180" href="//blog.rankinrez.net/themes/uno-zen/assets/img/apple-touch-icon-180x180.png?v=wAAv6Wqe6l?v=1494704478824">
-    <link rel="icon" type="image/png" href="//blog.rankinrez.net/themes/uno-zen/assets/img/favicon-32x32.png?v=wAAv6Wqe6l?v=1494704478824" sizes="32x32">
-    <link rel="icon" type="image/png" href="//blog.rankinrez.net/themes/uno-zen/assets/img/favicon-194x194.png?v=wAAv6Wqe6l?v=1494704478824" sizes="194x194">
-    <link rel="icon" type="image/png" href="//blog.rankinrez.net/themes/uno-zen/assets/img/favicon-96x96.png?v=wAAv6Wqe6l?v=1494704478824" sizes="96x96">
-    <link rel="icon" type="image/png" href="//blog.rankinrez.net/themes/uno-zen/assets/img/android-chrome-192x192.png?v=wAAv6Wqe6l?v=1494704478824" sizes="192x192">
-    <link rel="icon" type="image/png" href="//blog.rankinrez.net/themes/uno-zen/assets/img/favicon-16x16.png?v=wAAv6Wqe6l?v=1494704478824" sizes="16x16">
-    <link rel="manifest" href="//blog.rankinrez.net/themes/uno-zen/assets/img/manifest.json?v=wAAv6Wqe6l?v=1494704478824">
-    <link rel="shortcut icon" href="//blog.rankinrez.net/themes/uno-zen/assets/img/favicon.ico?v=wAAv6Wqe6l?v=1494704478824">
-    <meta name="msapplication-TileColor" content="#e74c3c">
-    <meta name="msapplication-TileImage" content="//blog.rankinrez.net/themes/uno-zen/assets/img/mstile-144x144.png?v=wAAv6Wqe6l?v=1494704478824">
-    <meta name="msapplication-config" content="//blog.rankinrez.net/themes/uno-zen/assets/img/browserconfig.xml?v=wAAv6Wqe6l?v=1494704478824">
-    <meta name="theme-color" content="#e74c3c">
-    <link rel="stylesheet" type="text/css" href="//blog.rankinrez.net/themes/uno-zen/assets/css/uno-zen.css?v=1494704478824" />
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="//blog.rankinrez.net/themes/the-shell/assets/highlighter/prettify.css?v=1494704598839" />
+    <link rel="stylesheet" type="text/css" href="//blog.rankinrez.net/themes/the-shell/assets/css/screen.css?v=1494704598839" />
+
     <link rel="canonical" href="http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html" />
     <meta name="referrer" content="origin" />
     
@@ -68,69 +55,29 @@
     <meta name="generator" content="HubPress" />
     <link rel="alternate" type="application/rss+xml" title="" href="http://blog.rankinrez.net/rss/" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/atom-one-dark.min.css">
-  </head>
-  <body class="post-template">
-    <header id="menu-button" class="expanded">
-      <a><i class="icon icon-list"></i></a>
-    </header>
-    <aside class="cover" style="background: url(rezsez.jpg) center/cover no-repeat fixed">
-      <div class="cover container">
-        <div class="profile">
+
+</head>
+<body class="post-template">
+
     
-          <hr class="divider long" />
-          <p>Musings on technology, life and everything else.</p>
-          <hr class="divider short" />
-          <div class="navigation">
-            <div class="profile contact">
-              
-              <nav class="navigation right">
-                <ul class="social expanded">
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-                </ul>
-              </nav>
-              <!-- <section class="icon icon-search" id="search-container">
-      <hr class="divider short" />
-      <form id="search-form">
-        <input type="text", name="search", placeholder="git, css, javascript,..." id="search-field" />
-      </form>
-    </section>
-     -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </aside>
-    <main>
-      <section id="search-results"></section>
-      <section class="content">
-        
 
-  <article class="post">
-    <header>
-      <div class="post meta">
-        <time datetime="13 May 2017">13 May 2017</time>
-        <span class="post tags"></span>
+<main class="content" role="main">
+
+    <article class="post">
+
+        <header class="post-header">
+            <a id="blog-logo" href="http://blog.rankinrez.net">
+                    
+            </a>
+        </header>
 
 
-        <span class="post reading-time"> ~ <span></span> read.</span>
-      </div>
-      <a alt="Tweet 'DNS Whitelist in BIND with RPZ'" href="https://twitter.com/intent/tweet?text=DNS%20Whitelist%20in%20BIND%20with%20RPZ%20%C2%BB&amp;hashtags=&amp;url=http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html">
-        
-        <h1 class="icon-reverse icon-social-twitter-post" id="post-title">DNS Whitelist in BIND with RPZ</h1>
-      </a>
-    </header>
+        <span class="post-meta"><time datetime="2017-05-13">13 May 2017</time> </span>
 
-    <div id="post-content" class="post">
-      <div id="preamble">
+        <h1 class="post-title">DNS Whitelist in BIND with RPZ</h1>
+
+        <section class="post-content">
+            <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>I recently got a Samsung 'smart' TV which is very nice to look at.</p>
@@ -338,25 +285,48 @@ Apr 20 17:42:29 dnsvm named[7369]: 13-May-2017 17:42:29.033 rpz: info: client 19
 <p>So yeah, probably not ideal as the TV can still get out to the internet, at least on 80 and 443 TCP, but without DNS I&#8217;ve hopefully limited how much it can do.</p>
 </div>
 </div>
-    </div>
+        </section>
 
-    <div class="post related">
 
-    </div>
+        <footer class="post-footer">
 
-    <footer class="post comments">
+                <section class="author">
+                    <h4>Cathal Mooney</h4>
+                    <p></p>
+                </section>
+
+            <section class="share">
+                <h4>Share this</h4>
+                <a class="icon-twitter" href="http://twitter.com/share?text=DNS Whitelist in BIND with RPZ&url=http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+
+    </article>
+
+</main>
+
+
+    <footer class="site-footer">
+        <!-- <a class="subscribe icon-feed" href="http://blog.rankinrez.net/rss/"><span class="tooltip">Subscribe!</span></a> -->
+        <div class="inner">
+             <section class="copyright">All content copyright <a href="/"></a> &copy; 2017 &bull; All rights reserved.</section>
+             <section class="poweredby">Proudly published with <a href="http://hubpress.io">HubPress</span></a> in <a href="https://github.com/mityalebedev/The-Shell">The Shell</a> theme.</section>
+        </div>
     </footer>
 
-  </article>
-
-
-        <footer>
-          <span class="copyright">
-            &copy; 2017. All rights reserved. Built with <a href="https://github.com/Kikobeats/uno-zen" target="_blank">Uno Zen</a> under <a href="http://hubpress.io/" target="_blank">HubPress</a>.
-          </span>
-        </footer>
-      </section>
-    </main>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js?v="></script> 
       <script type="text/javascript">
         jQuery( document ).ready(function() {
@@ -371,6 +341,8 @@ Apr 20 17:42:29 dnsvm named[7369]: 13-May-2017 17:42:29.033 rpz: info: client 19
       </script>
        
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-    <script src="//blog.rankinrez.net/themes/uno-zen/assets/js/uno-zen.js?v=1494704478824" type="text/javascript" charset="utf-8"></script>
-  </body>
+
+    <script type='text/javascript' src="//blog.rankinrez.net/themes/the-shell/assets/highlighter/prettify.js?v=1494704598839"></script>
+    <script type='text/javascript' src="//blog.rankinrez.net/themes/the-shell/assets/js/shell.js?v=1494704598839"></script>
+</body>
 </html>
