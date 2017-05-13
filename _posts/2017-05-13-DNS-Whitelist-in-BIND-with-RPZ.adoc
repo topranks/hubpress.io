@@ -4,13 +4,13 @@
 
 I recently got a Samsung 'smart' TV which is very nice to look at.
 
-Unfortunately there have been numerous privacy issues with smart TV's of all kinds, and Samsung in http://www.bbc.com/news/technology-31296188[particular].  So I initially decided to block the TV completely from connecting to any external internet resources with an access list on my router.
+Unfortunately there have been numerous privacy issues with smart TV's of all kinds, and Samsung in http://www.bbc.com/news/technology-31296188[particular].  So to be safe I initially decided to block the TV completely from connecting to the internet, by blocking it at my router.
 
 As it turns out however, the built-in Netflix app on the TV is the only way I can watch true UHD (10bit colour) 4k content on the TV (don't get me started!)
 
-So I found myself in a situation where I needed to allow the TV to connect out to the internet, and had to allow it on the router.
+So I found myself in a situation where I needed to allow the TV to connect out to the internet, despite my misgivings.
 
-But this got me thinking - could I somehow limit it's access to just Netflix?  I modified the router ACL to allow it talk to all the IPv4 prefixes announced by AS2906 [Netflix Streaming Services Inc.]  This unfortunately didn't work, without looking too deeply it seemed Akamai was involved in at least some of the traffic.
+But this got me thinking - could I somehow limit it's access to just Netflix?  I modified the router ACL to allow it talk to all the IPv4 prefixes announced by AS2906 [Netflix Streaming Services Inc.]  This unfortunately didn't work, without looking too deeply it seemed Akamai was involved in at least some of the traffic.  Either way the app didn't work, I could have continued to investigate and added more IP ranges to the ACL to make it work, but it seemed like a lot of trouble.
 
 Ruling out cumbersome IP based blocking I began to wonder could I perhaps limit it's access by restricting the domain names it could resolve?
 
@@ -18,5 +18,149 @@ Ruling out cumbersome IP based blocking I began to wonder could I perhaps limit 
 
 I am relatively familiar with Bind having used it down through the years, and one feature in particular suggested it might help - Response Policy Zones.
 
-Basically RPZ can be used to create a DNS "firewall," limiting what domains can be resolved.  The problem I had 
+Basically RPZ can be used to create a DNS "firewall," limiting what domains can be resolved.  There is plenty of information online about how this can be set up, however I didn't find anything specifically explaining how to do what I needed (a total blacklist with only a very small whitelist of domains).
+
+Turns out it's fairly easy to do.
+
+== Bind Configuration
+
+The first step is to get a basic Bind resolver up and running.  I did this with a Ubuntu 16.04 system.
+
+I then defined two RPZ 'zones' in the 'options' section of my named.conf (on my particular system I did it in /etc/bind/named.conf.options).  The key thing here is that RPZ checks zones in the order they are listed - this is key to creating a whitelist as opposed to a blacklist.  A single line is required:
+
+ response-policy { zone "rpz.whitelist"; zone "rpz"; };
+ 
+All queries will then be filtered based on the response policy zones listed.  If a match is found in the first (rpz.whitelist) then that will be used, otherwise the second one (rpz) will be checked.
+
+The Bind server needs to be configured as authorititive master for these zones, similar to a standard zone, although with "allow-query" set to none.  Again this is in named.conf (in my case /etc/bind/named.conf.default-zones):
+
+ zone "rpz.whitelist" {
+    type master;
+    file "/etc/bind/db.rpz.whitelist";
+    allow-query { none; };
+ };
+ 
+ zone "rpz" {
+    type master;
+    file "/etc/bind/db.rpz";
+    allow-query { none; };
+ };
+
+As can be seen the zone definitions reference the location of the zone file for each.  The files are created as follows, using the RPZ syntax.  The first zone, rpz.whitelist, lists the domains I had worked out Netflix used:
+
+_/etc/bind/db.rpz.whitelist_:
+....
+$TTL 60
+@            IN    SOA  localhost. root.localhost.  (
+                      4   ; serial 
+                      3H  ; refresh 
+                      1H  ; retry 
+                      1W  ; expiry 
+                      1H) ; minimum 
+              IN    NS    localhost.
+  
+ netflix.com                 CNAME   rpz-passthru.
+ *.netflix.com               CNAME   rpz-passthru.
+ 
+ nflximg.com                 CNAME   rpz-passthru.
+ *.nflximg.com               CNAME   rpz-passthru.
+ 
+ nflximg.net                 CNAME   rpz-passthru.
+ *.nflximg.net               CNAME   rpz-passthru.
+....
+  
+
+Note that for each domain I have included the 'apex' record, and also a wildcard to catch all sub-domains.  In each case they are listed as CNAME records pointing to rpz-passthru, which is the RPZ syntax to tell Bind to allow queries for them.
+
+The second RPZ zone file is created as follows.  This is configured for all sub-domains of the root zone, with a CNAME pointing to "." (which tells RPZ to return NXDOMAIN for such a lookup).  As the trailing dot (root zone) is left out of entries in RPZ zones, an asterix on it's own is all that is needed to represent subdomains of the DNS root:
+
+_/etc/bind/db.rpz_:
+....
+$TTL 60
+@            IN    SOA  localhost. root.localhost.  (
+                     4   ; serial 
+                     3H  ; refresh 
+                     1H  ; retry 
+                     1W  ; expiry 
+                     1H) ; minimum 
+             IN    NS    localhost.
+
+* CNAME   .
+....
+
+With the config in place I was able to reload Bind and check if it was working.  
+
+
+== Results
+
+So does it work.  If I try to resolve a random domain I get an NXDOMAIN response:
+
+....
+topranks@dnsvm:~$ dig A www.samsung.com @localhost
+
+; <<>> DiG 9.10.3-P4-Ubuntu <<>> A www.samsung.com @localhost
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 14003
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;www.samsung.com.		IN	A
+....
+
+
+And if I try for a sub-domain of netflix.com I get a valid response:
+
+....
+topranks@dnsvm:~$ dig A www.netflix.com @localhost
+
+; <<>> DiG 9.10.3-P4-Ubuntu <<>> A www.netflix.com @localhost
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 59390
+;; flags: qr rd ra; QUERY: 1, ANSWER: 10, AUTHORITY: 4, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;www.netflix.com.		IN	A
+
+;; ANSWER SECTION:
+www.netflix.com.	1800	IN	CNAME	www.geo.netflix.com.
+www.geo.netflix.com.	1800	IN	CNAME	www.eu-west-1.prodaa.netflix.com.
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.209.165.126
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.19.164.15
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.178.51
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.209.156.83
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.202.184
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.15.72
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.81.52
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.174.58
+....
+
+== Additions for my Smart TV case
+
+In addition to the above I changed the ACL on for traffic coming from the TV to only allow TCP on ports 80 and 443, which is enough for Netflix, but importantly blocks the TV from using any external DNS (even in normal circumstances it looks like the TV will use 8.8.8.8 in addition to any configured DNS server entered on it).
+
+Finally on the TV I changed the DNS server and sure enough the TV thinks something is wrong:
+
+
+
+
+ 
+  
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+
+
+
+
 
