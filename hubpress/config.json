@@ -11,7 +11,7 @@
   "urls": {
     "site": "http://blog.rankinrez.net",
     "hubpress": "http://blog.rankinrez.net",
-    "theme": "//blog.rankinrez.net/themes/casper",
+    "theme": "//blog.rankinrez.net/themes/ghostium",
     "images": "http://blog.rankinrez.net/images"
   },
   "initialisationConfigComponent": {
