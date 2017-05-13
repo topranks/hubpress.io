@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[REZ SEZ]]></title><description><![CDATA[Musings on technology, life and everything in between.]]></description><link>http://blog.rankinrez.net</link><generator>RSS for Node</generator><lastBuildDate>Sat, 13 May 2017 20:17:34 GMT</lastBuildDate><atom:link href="http://blog.rankinrez.net/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[REZ SEZ]]></title><description><![CDATA[Musings on technology, life and everything in between.]]></description><link>http://blog.rankinrez.net</link><generator>RSS for Node</generator><lastBuildDate>Sat, 13 May 2017 20:20:16 GMT</lastBuildDate><atom:link href="http://blog.rankinrez.net/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Restricting DNS queries to a specific list of domains.</p>
@@ -117,7 +117,7 @@
                      1H) ; minimum
              IN    NS    localhost.
 
-*                  CNAME   .</pre>
+*                  CNAME .</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -196,7 +196,7 @@ www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.174.58</pre>
 <div class="literalblock">
 <div class="content">
 <pre>Apr 20 17:42:27 dnsvm named[7369]: 13-May-2017 17:42:27.003 queries: info: client 192.168.240.42#40665 (art-0.nflximg.net): query: art-0.nflximg.net IN A + (192.168.240.32)
-Apr 20 17:42:27 dnsvm named[7369]: 13-May-2017 17:42:27.003 rpz: info: client 192.168.240.42#40665 (art-0.nflximg.net): rpz QNAME PASSTHRU rewrite art-0.nflximg.net via art-0.nflximg.net.rpz.netflix
+Apr 20 17:42:27 dnsvm named[7369]: 13-May-2017 17:42:27.003 rpz: info: client 192.168.240.42#40665 (art-0.nflximg.net): rpz QNAME PASSTHRU rewrite art-0.nflximg.net via art-0.nflximg.net.rpz.whitelist
 Apr 20 17:42:27 dnsvm named[7369]: 13-May-2017 17:42:27.766 queries: info: client 192.168.240.42#34179 (ns11.whois.co.kr): query: ns11.whois.co.kr IN A + (192.168.240.32)
 Apr 20 17:42:27 dnsvm named[7369]: 13-May-2017 17:42:27.766 rpz: info: client 192.168.240.42#34179 (ns11.whois.co.kr): rpz QNAME NXDOMAIN rewrite ns11.whois.co.kr via ns11.whois.co.kr.rpz
 Apr 20 17:42:29 dnsvm named[7369]: 13-May-2017 17:42:29.031 queries: info: client 192.168.240.42#59989 (time.samsungcloudsolution.com): query: time.samsungcloudsolution.com IN A + (192.168.240.32)
