@@ -38,9 +38,9 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/main.min.css?v=1494706158312"/>
-    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/custom.css?v=1494706158312"/>
-    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1494706158312"/>
+    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/main.min.css?v=1494706339344"/>
+    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/custom.css?v=1494706339344"/>
+    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1494706339344"/>
 
 
 
@@ -70,7 +70,7 @@
       GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
     </script>
 
-    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/head-scripts.min.js?v=1494706158312"></script>
+    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/head-scripts.min.js?v=1494706339344"></script>
 
     <link rel="canonical" href="http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html" />
     <meta name="referrer" content="origin" />
@@ -78,12 +78,12 @@
     <meta property="og:site_name" content="REZ SEZ" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="DNS Whitelist in BIND with RPZ" />
-    <meta property="og:description" content="Restricting DNS queries to a specific list of domains. I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in particular.  Being predictably paranoid I therefore blocked the TV&amp;" />
+    <meta property="og:description" content="Restricting DNS queries to a specific list of domains. I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in particular.  Being predictably paranoid I immediately blocked the TV&amp;" />
     <meta property="og:url" content="http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html" />
     <meta property="article:published_time" content="2017-05-13T00:00:00.000Z" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="DNS Whitelist in BIND with RPZ" />
-    <meta name="twitter:description" content="Restricting DNS queries to a specific list of domains. I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in particular.  Being predictably paranoid I therefore blocked the TV&amp;" />
+    <meta name="twitter:description" content="Restricting DNS queries to a specific list of domains. I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in particular.  Being predictably paranoid I immediately blocked the TV&amp;" />
     <meta name="twitter:url" content="http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html" />
     
     <script type="application/ld+json">
@@ -100,7 +100,7 @@
     "headline": "DNS Whitelist in BIND with RPZ",
     "url": "http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html",
     "datePublished": "2017-05-13T00:00:00.000Z",
-    "description": "Restricting DNS queries to a specific list of domains. I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in particular.  Being predictably paranoid I therefore blocked the TV&amp;"
+    "description": "Restricting DNS queries to a specific list of domains. I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in particular.  Being predictably paranoid I immediately blocked the TV&amp;"
 }
     </script>
 
@@ -188,13 +188,13 @@
 <p>I recently got a Samsung 'smart' TV which is very nice to look at.</p>
 </div>
 <div class="paragraph">
-<p>Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in <a href="http://www.bbc.com/news/technology-31296188">particular</a>.  Being predictably paranoid I therefore blocked the TV&#8217;s IP address on my router to stop it getting to the internet.</p>
+<p>Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in <a href="http://www.bbc.com/news/technology-31296188">particular</a>.  Being predictably paranoid I immediately blocked the TV&#8217;s IP address on my router to stop it getting to the internet.</p>
 </div>
 <div class="paragraph">
-<p>As it turns out however, the built-in Netflix app on the TV is my only option for 4k Netflix (my HTPC was out due to not having a Kaby Lake chip).</p>
+<p>As it turns out however, the built-in Netflix app on the TV is my only option for 4k Netflix (my HTPC won&#8217;t work due to not having a Kaby Lake chip despite having an Nvidia Pascal card&#8230;&#8203;.).</p>
 </div>
 <div class="paragraph">
-<p>So I found myself in a situation where I needed to allow the TV get out to the internet, despite my misgivings.</p>
+<p>Anyway, I found myself in a situation where I needed to allow the TV get out to the internet, despite my misgivings.</p>
 </div>
 <div class="paragraph">
 <p>But this got me thinking - could I somehow limit it&#8217;s access to just Netflix?  I initally tried an IP-based ACL on the router, but there were some issues with that so I began to wonder was there a DNS-based approach I could take?</p>
@@ -451,7 +451,7 @@ Apr 20 17:42:29 dnsvm named[7369]: 13-May-2017 17:42:29.033 rpz: info: client 19
        
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
-    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/foot-scripts.min.js?v=1494706158312"></script>
+    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/foot-scripts.min.js?v=1494706339344"></script>
 
 
   </body>
