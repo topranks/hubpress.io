@@ -1,0 +1,22 @@
+= DNS Whitelist in BIND with RPZ
+ :hp-image: /covers/cover.png
+ :hp-tags: DNS, Filtering, Firewall, Security
+
+I recently got a Samsung 'smart' TV which is very nice to look at.
+
+Unfortunately there have been numerous privacy issues with smart TV's of all kinds, and Samsung in http://www.bbc.com/news/technology-31296188[particular].  So I initially decided to block the TV completely from connecting to any external internet resources with an access list on my router.
+
+As it turns out however, the built-in Netflix app on the TV is the only way I can watch true UHD (10bit colour) 4k content on the TV (don't get me started!)
+
+So I found myself in a situation where I needed to allow the TV to connect out to the internet, and had to allow it on the router.
+
+But this got me thinking - could I somehow limit it's access to just Netflix?  I modified the router ACL to allow it talk to all the IPv4 prefixes announced by AS2906 [Netflix Streaming Services Inc.]  This unfortunately didn't work, without looking too deeply it seemed Akamai was involved in at least some of the traffic.
+
+Ruling out cumbersome IP based blocking I began to wonder could I perhaps limit it's access by restricting the domain names it could resolve?
+
+== Enter DNS RPZ
+
+I am relatively familiar with Bind having used it down through the years, and one feature in particular suggested it might help - Response Policy Zones.
+
+Basically RPZ can be used to create a DNS "firewall," limiting what domains can be resolved.  The problem I had 
+
