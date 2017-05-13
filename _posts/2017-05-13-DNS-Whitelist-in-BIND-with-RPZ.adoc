@@ -6,13 +6,13 @@ I recently got a Samsung 'smart' TV which is very nice to look at.
 
 Unfortunately there have been numerous privacy issues with smart TV's of all kinds, and Samsung in http://www.bbc.com/news/technology-31296188[particular].  So to be safe I initially decided to block the TV completely from connecting to the internet, by blocking it at my router.
 
-As it turns out however, the built-in Netflix app on the TV is the only way I can watch true UHD (10bit colour) 4k content on the TV (don't get me started!)
+As it turns out however, the built-in Netflix app on the TV is my only option for 4k now (HTPC was out due to not having a Kaby Lake chip).
 
 So I found myself in a situation where I needed to allow the TV to connect out to the internet, despite my misgivings.
 
-But this got me thinking - could I somehow limit it's access to just Netflix?  I modified the router ACL to allow it talk to all the IPv4 prefixes announced by AS2906 [Netflix Streaming Services Inc.]  This unfortunately didn't work, without looking too deeply it seemed Akamai was involved in at least some of the traffic.  Either way the app didn't work, I could have continued to investigate and added more IP ranges to the ACL to make it work, but it seemed like a lot of trouble.
+But this got me thinking - could I somehow limit it's access to just Netflix?  I modified the router ACL to allow it talk to all the IPv4 prefixes announced by AS2906 [Netflix Streaming Services Inc.]  This unfortunately didn't work, without looking too deeply it seemed Akamai was involved in at least some of the traffic.  Either way the app didn't work on the TV.  I could have continued to investigate and added more IP ranges to the ACL to make it work I'm sure, but it seemed like a lot of trouble.
 
-Ruling out cumbersome IP based blocking I began to wonder could I perhaps limit it's access by restricting the domain names it could resolve?
+Ruling out IP based blocking I began to wonder could I perhaps limit it's access by restricting the domain names it could resolve?
 
 == Enter DNS RPZ
 
