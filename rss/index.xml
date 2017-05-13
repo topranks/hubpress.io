@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[REZ SEZ]]></title><description><![CDATA[Musings on technology, life and everything in between.]]></description><link>http://blog.rankinrez.net</link><generator>RSS for Node</generator><lastBuildDate>Sat, 13 May 2017 20:44:09 GMT</lastBuildDate><atom:link href="http://blog.rankinrez.net/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[REZ SEZ]]></title><description><![CDATA[Musings on technology, life and everything in between.]]></description><link>http://blog.rankinrez.net</link><generator>RSS for Node</generator><lastBuildDate>Sat, 13 May 2017 20:45:20 GMT</lastBuildDate><atom:link href="http://blog.rankinrez.net/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Restricting DNS queries to a specific list of domains.</p>
@@ -7,7 +7,7 @@
 <p>I recently got a Samsung 'smart' TV which is very nice to look at.</p>
 </div>
 <div class="paragraph">
-<p>Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in <a href="http://www.bbc.com/news/technology-31296188">particular</a>.  So being predictably paranoid I therefore blocked the TV&#8217;s IP address on my router to stop it getting to the internet.</p>
+<p>Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in <a href="http://www.bbc.com/news/technology-31296188">particular</a>.  So being predictably paranoid I immediately blocked the TV&#8217;s IP address on my router to stop it getting to the internet.</p>
 </div>
 <div class="paragraph">
 <p>As it turns out however, the built-in Netflix app on the TV is my only option for 4k Netflix (my HTPC was out due to not having a Kaby Lake chip).</p>
