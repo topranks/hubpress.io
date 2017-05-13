@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Musings on technology, life and everything else.]]></description><link>http://blog.rankinrez.net</link><generator>RSS for Node</generator><lastBuildDate>Sat, 13 May 2017 18:32:52 GMT</lastBuildDate><atom:link href="http://blog.rankinrez.net/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Musings on technology, life and everything else.]]></description><link>http://blog.rankinrez.net</link><generator>RSS for Node</generator><lastBuildDate>Sat, 13 May 2017 18:47:13 GMT</lastBuildDate><atom:link href="http://blog.rankinrez.net/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>I recently got a Samsung 'smart' TV which is very nice to look at.</p>
@@ -17,9 +17,8 @@
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_enter_dns_rpz">Enter DNS RPZ</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_enter_dns_rpz">Enter DNS RPZ</h3>
 <div class="paragraph">
 <p>I am relatively familiar with Bind having used it down through the years, and one feature in particular suggested it might help - Response Policy Zones.</p>
 </div>
@@ -30,10 +29,8 @@
 <p>Turns out it&#8217;s fairly easy to do.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_bind_configuration">Bind Configuration</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_bind_configuration">Bind Configuration</h3>
 <div class="paragraph">
 <p>The first step is to get a basic Bind resolver up and running.  I did this with a Ubuntu 16.04 system.</p>
 </div>
@@ -124,10 +121,8 @@
 <p>With the config in place I was able to reload Bind and check if it was working.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_results">Results</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_results">Results</h3>
 <div class="paragraph">
 <p>So does it work.  If I try to resolve a random domain I get an NXDOMAIN response:</p>
 </div>
@@ -179,10 +174,8 @@ www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.174.58</pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_additions_for_my_smart_tv_case">Additions for my Smart TV case</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_additions_for_my_smart_tv_case">Additions for my Smart TV case</h3>
 <div class="paragraph">
 <p>In addition to the above I changed the ACL on for traffic coming from the TV to only allow TCP on ports 80 and 443, which is enough for Netflix, but importantly blocks the TV from using any external DNS (even in normal circumstances it looks like the TV will use 8.8.8.8 in addition to any configured DNS server entered on it).</p>
 </div>
@@ -211,6 +204,5 @@ Apr 20 17:42:29 dnsvm named[7369]: 13-May-2017 17:42:29.033 rpz: info: client 19
 </div>
 <div class="paragraph">
 <p>So yeah, probably not ideal as the TV can still get out to the internet, at least on 80 and 443 TCP, but without DNS I&#8217;ve hopefully limited how much it can do.</p>
-</div>
 </div>
 </div>]]></description><link>http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html</link><guid isPermaLink="true">http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html</guid><dc:creator><![CDATA[Cathal Mooney]]></dc:creator><pubDate>Sat, 13 May 2017 00:00:00 GMT</pubDate></item></channel></rss>
