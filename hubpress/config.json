@@ -6,12 +6,12 @@
     "cname": "blog.rankinrez.net"
   },
   "theme": {
-    "name": "casper"
+    "name": "ghostium"
   },
   "urls": {
     "site": "http://blog.rankinrez.net",
     "hubpress": "http://blog.rankinrez.net",
-    "theme": "//blog.rankinrez.net/themes/ghostium",
+    "theme": "//blog.rankinrez.net/themes/casper",
     "images": "http://blog.rankinrez.net/images"
   },
   "initialisationConfigComponent": {
@@ -28,7 +28,7 @@
     "title": "",
     "description": "Musings on technology, life and everything else.",
     "logo": "",
-    "cover": "/images/rezsez.jpg",
+    "cover": "",
     "delay": "",
     "postsPerPage": "",
     "googleAnalytics": "",
