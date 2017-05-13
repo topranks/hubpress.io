@@ -6,12 +6,12 @@
     "cname": "blog.rankinrez.net"
   },
   "theme": {
-    "name": "roon"
+    "name": "ghostium"
   },
   "urls": {
     "site": "http://blog.rankinrez.net",
     "hubpress": "http://blog.rankinrez.net",
-    "theme": "//blog.rankinrez.net/themes/the-shell",
+    "theme": "//blog.rankinrez.net/themes/roon",
     "images": "http://blog.rankinrez.net/images"
   },
   "initialisationConfigComponent": {
