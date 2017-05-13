@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[REZ SEZ]]></title><description><![CDATA[Musings on technology, life and everything in between.]]></description><link>http://blog.rankinrez.net</link><generator>RSS for Node</generator><lastBuildDate>Sat, 13 May 2017 20:45:20 GMT</lastBuildDate><atom:link href="http://blog.rankinrez.net/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[REZ SEZ]]></title><description><![CDATA[Musings on technology, life and everything in between.]]></description><link>http://blog.rankinrez.net</link><generator>RSS for Node</generator><lastBuildDate>Sat, 13 May 2017 20:48:00 GMT</lastBuildDate><atom:link href="http://blog.rankinrez.net/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Restricting DNS queries to a specific list of domains.</p>
@@ -23,7 +23,7 @@
 <div class="sect2">
 <h3 id="_enter_dns_rpz">Enter DNS RPZ</h3>
 <div class="paragraph">
-<p>I am relatively familiar with Bind having used it down through the years, and one feature in particular suggested it might help - Response Policy Zones.</p>
+<p>I am relatively familiar with <a href="https://www.isc.org/downloads/bind">ISC Bind</a> having used it down through the years, and one feature in particular suggested it might help - Response Policy Zones.</p>
 </div>
 <div class="paragraph">
 <p>Basically RPZ can be used to create a DNS "firewall," limiting what domains can be resolved.  There is plenty of information online about how this can be set up, however I didn&#8217;t find anything specifically explaining how to do what I needed (a total blacklist with only a very small whitelist of domains).</p>
@@ -57,6 +57,7 @@
    type master;
    file "/etc/bind/db.rpz.whitelist";
    allow-query { none; };
+   allow-transfer { none; };
 };</pre>
 </div>
 </div>
@@ -66,6 +67,7 @@
    type master;
    file "/etc/bind/db.rpz";
    allow-query { none; };
+   allow-transfer { none; };
 };</pre>
 </div>
 </div>
@@ -115,9 +117,10 @@
                      1H  ; retry
                      1W  ; expiry
                      1H) ; minimum
-             IN    NS    localhost.
 
-*                  CNAME   .</pre>
+             IN      NS    localhost.
+
+*                    CNAME .</pre>
 </div>
 </div>
 <div class="paragraph">
