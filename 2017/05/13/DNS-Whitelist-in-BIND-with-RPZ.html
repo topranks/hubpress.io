@@ -38,9 +38,9 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/main.min.css?v=1494707315374"/>
-    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/custom.css?v=1494707315374"/>
-    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1494707315374"/>
+    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/main.min.css?v=1494707684185"/>
+    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/custom.css?v=1494707684185"/>
+    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1494707684185"/>
 
 
 
@@ -70,7 +70,7 @@
       GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
     </script>
 
-    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/head-scripts.min.js?v=1494707315374"></script>
+    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/head-scripts.min.js?v=1494707684185"></script>
 
     <link rel="canonical" href="http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html" />
     <meta name="referrer" content="origin" />
@@ -155,7 +155,7 @@
             <ul class="post-meta-list">
               <li class="post-meta-item">
                 <time datetime="2017-05-13" itemprop="datePublished">
-                  21 hours ago
+                  a day ago
                 </time>
               </li>
               <li class="post-meta-item">
@@ -219,7 +219,7 @@
 <p>The first step is to get a basic Bind resolver up and running.  I did this with a Ubuntu 16.04 system.</p>
 </div>
 <div class="paragraph">
-<p>I then configured a 'response-policy' block in the 'options' section of my named.conf (on my particular system I did it in /etc/bind/named.conf.options).  This lists two RPZ zones which are used to define what queries to filter.  The key thing here is that RPZ checks these zones in the order they are listed - this is key to creating a whitelist as opposed to a blacklist.  A single line is required:</p>
+<p>I then configured a 'response-policy' block in the 'options' section of named.conf (on my particular system I did it in /etc/bind/named.conf.options).  This lists two RPZ zones which are used to define what queries to filter.  The key thing here is that RPZ checks these zones in the order they are listed - this is key to creating a whitelist as opposed to a blacklist.  A single line is required:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -230,7 +230,7 @@
 <p>All queries will then be filtered based on the response policy zones listed.  If a match is found in the first (rpz.whitelist) then that will be used, otherwise the second one (rpz) will be checked.</p>
 </div>
 <div class="paragraph">
-<p>The Bind server needs to be configured as authorititive master for these zones, similar to a standard zone, although with "allow-query" set to none.  Again this is in named.conf (in my case /etc/bind/named.conf.default-zones):</p>
+<p>The Bind server needs to be configured as authorititive master for these zones, similar to a standard zone.  Again this is in named.conf (in my case /etc/bind/named.conf.default-zones):</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -238,6 +238,7 @@
    type master;
    file "/etc/bind/db.rpz.whitelist";
    allow-query { none; };
+   allow-transfer {"none";};
 };</pre>
 </div>
 </div>
@@ -247,6 +248,7 @@
    type master;
    file "/etc/bind/db.rpz";
    allow-query { none; };
+   allow-transfer {"none";};
 };</pre>
 </div>
 </div>
@@ -296,6 +298,7 @@
                      1H  ; retry
                      1W  ; expiry
                      1H) ; minimum
+
              IN    NS    localhost.
 
 *                  CNAME .</pre>
@@ -364,7 +367,7 @@ www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.174.58</pre>
 <p>In addition to the above I changed the ACL for traffic coming from the TV to only allow TCP on ports 80 and 443.  This is enough for Netflix, but importantly blocks the TV from using any external DNS (even in normal circumstances it looks like the TV uses 8.8.8.8 in addition to any DNS server you give it yourself.)</p>
 </div>
 <div class="paragraph">
-<p>Finally on the TV I changed the DNS server and sure enough the TV thinks something is wrong with DNS:</p>
+<p>Finally on the TV I changed the DNS server and sure enough it said something was wrong with DNS:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -451,7 +454,7 @@ Apr 20 17:42:29 dnsvm named[7369]: 13-May-2017 17:42:29.033 rpz: info: client 19
        
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
-    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/foot-scripts.min.js?v=1494707315374"></script>
+    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/foot-scripts.min.js?v=1494707684185"></script>
 
 
   </body>
