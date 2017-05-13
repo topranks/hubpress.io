@@ -38,9 +38,9 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/main.min.css?v=1494708480962"/>
-    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/custom.css?v=1494708480962"/>
-    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1494708480962"/>
+    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/main.min.css?v=1494708682417"/>
+    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/custom.css?v=1494708682417"/>
+    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1494708682417"/>
 
 
 
@@ -70,7 +70,7 @@
       GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
     </script>
 
-    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/head-scripts.min.js?v=1494708480962"></script>
+    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/head-scripts.min.js?v=1494708682417"></script>
 
     <link rel="canonical" href="http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html" />
     <meta name="referrer" content="origin" />
@@ -238,7 +238,6 @@
    type master;
    file "/etc/bind/db.rpz.whitelist";
    allow-query { none; };
-   allow-transfer { none; };
 };</pre>
 </div>
 </div>
@@ -248,7 +247,6 @@
    type master;
    file "/etc/bind/db.rpz";
    allow-query { none; };
-   allow-transfer { none; };
 };</pre>
 </div>
 </div>
@@ -330,7 +328,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>And if I try for a sub-domain of netflix.com I get a valid response:</p>
+<p>But if I try for a sub-domain of netflix.com I get a valid response:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -364,7 +362,7 @@ www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.174.58</pre>
 <div class="sect2">
 <h3 id="_additions_for_my_smart_tv_case">Additions for my Smart TV case</h3>
 <div class="paragraph">
-<p>In addition to the above I changed the ACL on for traffic coming from the TV to only allow TCP on ports 80 and 443, which is enough for Netflix, but importantly blocks the TV from using any external DNS (even in normal circumstances it looks like the TV uses 8.8.8.8 in addition to any DNS server you give it yourself.)</p>
+<p>In addition to the above I changed the ACL on for traffic coming from the TV to only allow TCP on ports 80 and 443.  This is enough for Netflix, but importantly blocks the TV from using any external DNS (even in normal circumstances it looks like it uses 8.8.8.8 in addition to any DNS server you give it yourself.)</p>
 </div>
 <div class="paragraph">
 <p>Finally on the TV I changed the DNS server and sure enough the TV thinks something is wrong with DNS:</p>
@@ -454,7 +452,7 @@ Apr 20 17:42:29 dnsvm named[7369]: 13-May-2017 17:42:29.033 rpz: info: client 19
        
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
-    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/foot-scripts.min.js?v=1494708480962"></script>
+    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/foot-scripts.min.js?v=1494708682417"></script>
 
 
   </body>
