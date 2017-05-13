@@ -16,7 +16,7 @@ But this got me thinking - could I somehow limit it's access to just Netflix?  I
 
 === Enter DNS RPZ
 
-I am relatively familiar with Bind having used it down through the years, and one feature in particular suggested it might help - Response Policy Zones.
+I am relatively familiar with https://www.isc.org/downloads/bind/[ISC Bind] having used it down through the years, and one feature in particular suggested it might help - Response Policy Zones.
 
 Basically RPZ can be used to create a DNS "firewall," limiting what domains can be resolved.  There is plenty of information online about how this can be set up, however I didn't find anything specifically explaining how to do what I needed (a total blacklist with only a very small whitelist of domains).
 
