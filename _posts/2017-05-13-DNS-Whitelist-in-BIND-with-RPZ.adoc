@@ -5,11 +5,11 @@ Restricting DNS queries to a specific list of domains.
 
 I recently got a Samsung 'smart' TV which is very nice to look at.
 
-Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in http://www.bbc.com/news/technology-31296188[particular].  Being predictably paranoid I immediately blocked the TV's IP address on my router to stop it getting to the internet.
+Unfortunately there have been numerous security and privacy issues with smart TVs of all kinds, and Samsung in http://www.bbc.com/news/technology-31296188[particular].  Being predictably paranoid I immediately blocked the TV's IP address on my router, to stop it getting out to the internet at all.
 
-As it turns out however, the built-in Netflix app on the TV is my only option for 4k Netflix (my HTPC won't work due to not having a Kaby Lake chip despite having an Nvidia Pascal card....).
+As it turns out however, the built-in Netflix app on the TV is my only option for 4k Netflix (my HTPC won't work due to not having a Kaby Lake chip, despite the Nvidia Pascal card....).
 
-Anyway, I found myself in a situation where I needed to allow the TV get out to the internet, despite my misgivings.
+Anyway, I found myself in a situation where I allowed the TV get out to the internet, despite my misgivings.
 
 But this got me thinking - could I somehow limit it's access to just Netflix?  I initally tried an IP-based ACL on the router, but there were some issues with that so I began to wonder was there a DNS-based approach I could take?
 
@@ -26,7 +26,7 @@ Turns out it's fairly easy to do.
 
 The first step is to get a basic Bind resolver up and running.  I did this with a Ubuntu 16.04 system.
 
-I then configured a 'response-policy' block in the 'options' section of my named.conf (on my particular system I did it in /etc/bind/named.conf.options).  This lists two RPZ zones which are used to define what queries to filter.  The key thing here is that RPZ checks zones in the order they are listed - this is key to creating a whitelist as opposed to a blacklist.  A single line is required:
+I then configured a 'response-policy' block in the 'options' section of my named.conf (on my particular system I did it in /etc/bind/named.conf.options).  This lists two RPZ zones which are used to define what queries to filter.  The key thing here is that RPZ checks these zones in the order they are listed - this is key to creating a whitelist as opposed to a blacklist.  A single line is required:
 
  response-policy { zone "rpz.whitelist"; zone "rpz"; };
  
