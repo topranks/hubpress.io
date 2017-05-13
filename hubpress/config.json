@@ -6,7 +6,7 @@
     "cname": "blog.rankinrez.net"
   },
   "theme": {
-    "name": "casper"
+    "name": "ghostium"
   },
   "urls": {
     "site": "http://blog.rankinrez.net",
@@ -28,7 +28,7 @@
     "title": "REZ SEZ",
     "description": "Musings on technology, life and everything in between.",
     "logo": "",
-    "cover": "/images/rezsez3.jpg",
+    "cover": "",
     "delay": "",
     "postsPerPage": "",
     "googleAnalytics": "",
