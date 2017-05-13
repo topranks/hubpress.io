@@ -25,7 +25,7 @@ Turns out it's fairly easy to do.
 
 The first step is to get a basic Bind resolver up and running.  I did this with a Ubuntu 16.04 system.
 
-I then defined two RPZ 'zones' in the 'options' section of my named.conf (on my particular system I did it in /etc/bind/named.conf.options).  The key thing here is that RPZ checks zones in the order they are listed - this is key to creating a whitelist as opposed to a blacklist.  A single line is required:
+I then configured a 'response-policy' block in the 'options' section of my named.conf (on my particular system I did it in /etc/bind/named.conf.options).  This lists two RPZ zones which are used to define what queries to filter.  The key thing here is that RPZ checks zones in the order they are listed - this is key to creating a whitelist as opposed to a blacklist.  A single line is required:
 
  response-policy { zone "rpz.whitelist"; zone "rpz"; };
  
@@ -45,7 +45,7 @@ The Bind server needs to be configured as authorititive master for these zones, 
     allow-query { none; };
  };
 
-As can be seen the zone definitions reference the location of the zone files for each.  The files are created as follows, using the RPZ syntax.  The first zone, rpz.whitelist, lists the domains I had worked out Netflix used:
+As can be seen the zone definitions reference the location of the zone files for each.  The files are created as follows, using the RPZ syntax.  The first zone, rpz.whitelist, is where to define the domains we want to allow.  In my case it looks like this:
 
 _/etc/bind/db.rpz.whitelist_:
 ....
