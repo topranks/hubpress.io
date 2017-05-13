@@ -9,10 +9,10 @@
     "name": "casper"
   },
   "urls": {
-    "site": "https://topranks.github.io",
-    "hubpress": "https://topranks.github.io",
-    "theme": "//topranks.github.io/themes/casper",
-    "images": "https://topranks.github.io/images"
+    "site": "http://blog.rankinrez.net",
+    "hubpress": "http://blog.rankinrez.net",
+    "theme": "//blog.rankinrez.net/themes/casper",
+    "images": "http://blog.rankinrez.net/images"
   },
   "initialisationConfigComponent": {
     "name": "initialise-configuration",
