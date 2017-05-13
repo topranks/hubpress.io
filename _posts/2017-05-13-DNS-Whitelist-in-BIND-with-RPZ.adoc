@@ -16,7 +16,7 @@ But this got me thinking - could I somehow limit it's access to just Netflix?  I
 
 === Enter DNS RPZ
 
-I am relatively familiar with Bind having used it down through the years, and one feature in particular suggested it might help - Response Policy Zones.
+I am relatively familiar with https://www.isc.org/downloads/bind[ISC Bind] having used it down through the years, and one feature in particular suggested it might help - Response Policy Zones.
 
 Basically RPZ can be used to create a DNS "firewall," limiting what domains can be resolved.  There is plenty of information online about how this can be set up, however I didn't find anything specifically explaining how to do what I needed (a total blacklist with only a very small whitelist of domains).
 
@@ -38,12 +38,14 @@ The Bind server needs to be configured as authorititive master for these zones, 
     type master;
     file "/etc/bind/db.rpz.whitelist";
     allow-query { none; };
+    allow-transfer { none; };
  };
  
  zone "rpz" {
     type master;
     file "/etc/bind/db.rpz";
     allow-query { none; };
+    allow-transfer { none; };
  };
 
 As can be seen the zone definitions reference the location of the zone files for each.  The files are created as follows, using the RPZ syntax.  The first zone, rpz.whitelist, is where to define the domains we want to allow.  In my case it looks like this:
@@ -83,10 +85,11 @@ $TTL 60
                      3H  ; refresh 
                      1H  ; retry 
                      1W  ; expiry 
-                     1H) ; minimum 
-             IN    NS    localhost.
+                     1H) ; minimum
+                     
+             IN      NS    localhost.
 
-*                  CNAME   .
+*                    CNAME .
 ....
 
 With the config in place I was able to reload Bind and check if it was working.  
