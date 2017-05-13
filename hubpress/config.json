@@ -11,7 +11,7 @@
   "urls": {
     "site": "http://blog.rankinrez.net",
     "hubpress": "http://blog.rankinrez.net",
-    "theme": "//blog.rankinrez.net/themes/uno-zen",
+    "theme": "//blog.rankinrez.net/themes/the-shell",
     "images": "http://blog.rankinrez.net/images"
   },
   "initialisationConfigComponent": {
@@ -28,7 +28,7 @@
     "title": "",
     "description": "Musings on technology, life and everything else.",
     "logo": "",
-    "cover": "rezsez.jpg",
+    "cover": "/images/rezsez.jpg",
     "delay": "",
     "postsPerPage": "",
     "googleAnalytics": "",
