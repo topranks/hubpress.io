@@ -38,14 +38,12 @@ The Bind server needs to be configured as authorititive master for these zones, 
     type master;
     file "/etc/bind/db.rpz.whitelist";
     allow-query { none; };
-    allow-transfer { none; };
  };
  
  zone "rpz" {
     type master;
     file "/etc/bind/db.rpz";
     allow-query { none; };
-    allow-transfer { none; };
  };
 
 As can be seen the zone definitions reference the location of the zone files for each.  The files are created as follows, using the RPZ syntax.  The first zone, rpz.whitelist, is where to define the domains we want to allow.  In my case it looks like this:
@@ -115,7 +113,7 @@ topranks@dnsvm:~$ dig A www.samsung.com @localhost
 ....
 
 
-And if I try for a sub-domain of netflix.com I get a valid response:
+But if I try for a sub-domain of netflix.com I get a valid response:
 
 ....
 topranks@dnsvm:~$ dig A www.netflix.com @localhost
@@ -146,7 +144,7 @@ www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.174.58
 
 === Additions for my Smart TV case
 
-In addition to the above I changed the ACL on for traffic coming from the TV to only allow TCP on ports 80 and 443, which is enough for Netflix, but importantly blocks the TV from using any external DNS (even in normal circumstances it looks like the TV uses 8.8.8.8 in addition to any DNS server you give it yourself.)
+In addition to the above I changed the ACL on for traffic coming from the TV to only allow TCP on ports 80 and 443.  This is enough for Netflix, but importantly blocks the TV from using any external DNS (even in normal circumstances it looks like it uses 8.8.8.8 in addition to any DNS server you give it yourself.)
 
 Finally on the TV I changed the DNS server and sure enough the TV thinks something is wrong with DNS:
 
