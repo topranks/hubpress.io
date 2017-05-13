@@ -12,7 +12,7 @@
 
     <link rel="shortcut icon" href="https://topranks.github.io/favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="//topranks.github.io/themes/casper/assets/css/screen.css?v=1494695473548" />
+    <link rel="stylesheet" type="text/css" href="//topranks.github.io/themes/casper/assets/css/screen.css?v=1494697851984" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
 
     <link rel="canonical" href="https://topranks.github.io/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html" />
@@ -20,12 +20,12 @@
     
     <meta property="og:type" content="article" />
     <meta property="og:title" content="DNS Whitelist in BIND with RPZ" />
-    <meta property="og:description" content="I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous privacy issues with smart TV&amp;#8217;s of all kinds, and Samsung in particular.  So I initially decided to block the TV completely from connecting to any external internet resources with" />
+    <meta property="og:description" content="I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous privacy issues with smart TV&amp;#8217;s of all kinds, and Samsung in particular.  So to be safe I initially decided to block the TV completely from connecting to the internet," />
     <meta property="og:url" content="https://topranks.github.io/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html" />
     <meta property="article:published_time" content="2017-05-13T00:00:00.000Z" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="DNS Whitelist in BIND with RPZ" />
-    <meta name="twitter:description" content="I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous privacy issues with smart TV&amp;#8217;s of all kinds, and Samsung in particular.  So I initially decided to block the TV completely from connecting to any external internet resources with" />
+    <meta name="twitter:description" content="I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous privacy issues with smart TV&amp;#8217;s of all kinds, and Samsung in particular.  So to be safe I initially decided to block the TV completely from connecting to the internet," />
     <meta name="twitter:url" content="https://topranks.github.io/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html" />
     
     <script type="application/ld+json">
@@ -41,7 +41,7 @@
     "headline": "DNS Whitelist in BIND with RPZ",
     "url": "https://topranks.github.io/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html",
     "datePublished": "2017-05-13T00:00:00.000Z",
-    "description": "I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous privacy issues with smart TV&amp;#8217;s of all kinds, and Samsung in particular.  So I initially decided to block the TV completely from connecting to any external internet resources with"
+    "description": "I recently got a Samsung &#x27;smart&#x27; TV which is very nice to look at. Unfortunately there have been numerous privacy issues with smart TV&amp;#8217;s of all kinds, and Samsung in particular.  So to be safe I initially decided to block the TV completely from connecting to the internet,"
 }
     </script>
 
@@ -81,16 +81,16 @@
 <p>I recently got a Samsung 'smart' TV which is very nice to look at.</p>
 </div>
 <div class="paragraph">
-<p>Unfortunately there have been numerous privacy issues with smart TV&#8217;s of all kinds, and Samsung in <a href="http://www.bbc.com/news/technology-31296188">particular</a>.  So I initially decided to block the TV completely from connecting to any external internet resources with an access list on my router.</p>
+<p>Unfortunately there have been numerous privacy issues with smart TV&#8217;s of all kinds, and Samsung in <a href="http://www.bbc.com/news/technology-31296188">particular</a>.  So to be safe I initially decided to block the TV completely from connecting to the internet, by blocking it at my router.</p>
 </div>
 <div class="paragraph">
 <p>As it turns out however, the built-in Netflix app on the TV is the only way I can watch true UHD (10bit colour) 4k content on the TV (don&#8217;t get me started!)</p>
 </div>
 <div class="paragraph">
-<p>So I found myself in a situation where I needed to allow the TV to connect out to the internet, and had to allow it on the router.</p>
+<p>So I found myself in a situation where I needed to allow the TV to connect out to the internet, despite my misgivings.</p>
 </div>
 <div class="paragraph">
-<p>But this got me thinking - could I somehow limit it&#8217;s access to just Netflix?  I modified the router ACL to allow it talk to all the IPv4 prefixes announced by AS2906 [Netflix Streaming Services Inc.]  This unfortunately didn&#8217;t work, without looking too deeply it seemed Akamai was involved in at least some of the traffic.</p>
+<p>But this got me thinking - could I somehow limit it&#8217;s access to just Netflix?  I modified the router ACL to allow it talk to all the IPv4 prefixes announced by AS2906 [Netflix Streaming Services Inc.]  This unfortunately didn&#8217;t work, without looking too deeply it seemed Akamai was involved in at least some of the traffic.  Either way the app didn&#8217;t work, I could have continued to investigate and added more IP ranges to the ACL to make it work, but it seemed like a lot of trouble.</p>
 </div>
 <div class="paragraph">
 <p>Ruling out cumbersome IP based blocking I began to wonder could I perhaps limit it&#8217;s access by restricting the domain names it could resolve?</p>
@@ -104,7 +104,169 @@
 <p>I am relatively familiar with Bind having used it down through the years, and one feature in particular suggested it might help - Response Policy Zones.</p>
 </div>
 <div class="paragraph">
-<p>Basically RPZ can be used to create a DNS "firewall," limiting what domains can be resolved.  The problem I had</p>
+<p>Basically RPZ can be used to create a DNS "firewall," limiting what domains can be resolved.  There is plenty of information online about how this can be set up, however I didn&#8217;t find anything specifically explaining how to do what I needed (a total blacklist with only a very small whitelist of domains).</p>
+</div>
+<div class="paragraph">
+<p>Turns out it&#8217;s fairly easy to do.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bind_configuration">Bind Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The first step is to get a basic Bind resolver up and running.  I did this with a Ubuntu 16.04 system.</p>
+</div>
+<div class="paragraph">
+<p>I then defined two RPZ 'zones' in the 'options' section of my named.conf (on my particular system I did it in /etc/bind/named.conf.options).  The key thing here is that RPZ checks zones in the order they are listed - this is key to creating a whitelist as opposed to a blacklist.  A single line is required:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>response-policy { zone "rpz.whitelist"; zone "rpz"; };</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All queries will then be filtered based on the response policy zones listed.  If a match is found in the first (rpz.whitelist) then that will be used, otherwise the second one (rpz) will be checked.</p>
+</div>
+<div class="paragraph">
+<p>The Bind server needs to be configured as authorititive master for these zones, similar to a standard zone, although with "allow-query" set to none.  Again this is in named.conf (in my case /etc/bind/named.conf.default-zones):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>zone "rpz.whitelist" {
+   type master;
+   file "/etc/bind/db.rpz.whitelist";
+   allow-query { none; };
+};</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>zone "rpz" {
+   type master;
+   file "/etc/bind/db.rpz";
+   allow-query { none; };
+};</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As can be seen the zone definitions reference the location of the zone file for each.  The files are created as follows, using the RPZ syntax.  The first zone, rpz.whitelist, lists the domains I had worked out Netflix used:</p>
+</div>
+<div class="paragraph">
+<p><em>/etc/bind/db.rpz.whitelist</em>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$TTL 60
+@            IN    SOA  localhost. root.localhost.  (
+                      4   ; serial
+                      3H  ; refresh
+                      1H  ; retry
+                      1W  ; expiry
+                      1H) ; minimum
+              IN    NS    localhost.
+
+ netflix.com                 CNAME   rpz-passthru.
+ *.netflix.com               CNAME   rpz-passthru.
+
+ nflximg.com                 CNAME   rpz-passthru.
+ *.nflximg.com               CNAME   rpz-passthru.
+
+ nflximg.net                 CNAME   rpz-passthru.
+ *.nflximg.net               CNAME   rpz-passthru.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that for each domain I have included the 'apex' record, and also a wildcard to catch all sub-domains.  In each case they are listed as CNAME records pointing to rpz-passthru, which is the RPZ syntax to tell Bind to allow queries for them.</p>
+</div>
+<div class="paragraph">
+<p>The second RPZ zone file is created as follows.  This is configured for all sub-domains of the root zone, with a CNAME pointing to "." (which tells RPZ to return NXDOMAIN for such a lookup).  As the trailing dot (root zone) is left out of entries in RPZ zones, an asterix on it&#8217;s own is all that is needed to represent subdomains of the DNS root:</p>
+</div>
+<div class="paragraph">
+<p><em>/etc/bind/db.rpz</em>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$TTL 60
+@            IN    SOA  localhost. root.localhost.  (
+                     4   ; serial
+                     3H  ; refresh
+                     1H  ; retry
+                     1W  ; expiry
+                     1H) ; minimum
+             IN    NS    localhost.
+
+* CNAME   .</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the config in place I was able to reload Bind and check if it was working.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_results">Results</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>So does it work.  If I try to resolve a random domain I get an NXDOMAIN response:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>topranks@dnsvm:~$ dig A www.samsung.com @localhost
+
+; &lt;&lt;&gt;&gt; DiG 9.10.3-P4-Ubuntu &lt;&lt;&gt;&gt; A www.samsung.com @localhost
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NXDOMAIN, id: 14003
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;www.samsung.com.		IN	A</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And if I try for a sub-domain of netflix.com I get a valid response:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>topranks@dnsvm:~$ dig A www.netflix.com @localhost
+
+; &lt;&lt;&gt;&gt; DiG 9.10.3-P4-Ubuntu &lt;&lt;&gt;&gt; A www.netflix.com @localhost
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 59390
+;; flags: qr rd ra; QUERY: 1, ANSWER: 10, AUTHORITY: 4, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;www.netflix.com.		IN	A
+
+;; ANSWER SECTION:
+www.netflix.com.	1800	IN	CNAME	www.geo.netflix.com.
+www.geo.netflix.com.	1800	IN	CNAME	www.eu-west-1.prodaa.netflix.com.
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.209.165.126
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.19.164.15
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.178.51
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.209.156.83
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.202.184
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.15.72
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.81.52
+www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.174.58</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additions_for_my_smart_tv_case">Additions for my Smart TV case</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In addition to the above I changed the ACL on for traffic coming from the TV to only allow TCP on ports 80 and 443, which is enough for Netflix, but importantly blocks the TV from using any external DNS (even in normal circumstances it looks like the TV will use 8.8.8.8 in addition to any configured DNS server entered on it).</p>
+</div>
+<div class="paragraph">
+<p>Finally on the TV I changed the DNS server and sure enough the TV thinks something is wrong:</p>
 </div>
 </div>
 </div>
@@ -179,8 +341,8 @@
        
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
-    <script type="text/javascript" src="//topranks.github.io/themes/casper/assets/js/jquery.fitvids.js?v=1494695473548"></script>
-    <script type="text/javascript" src="//topranks.github.io/themes/casper/assets/js/index.js?v=1494695473548"></script>
+    <script type="text/javascript" src="//topranks.github.io/themes/casper/assets/js/jquery.fitvids.js?v=1494697851984"></script>
+    <script type="text/javascript" src="//topranks.github.io/themes/casper/assets/js/index.js?v=1494697851984"></script>
 
 </body>
 </html>
