@@ -6,12 +6,12 @@
     "cname": "blog.rankinrez.net"
   },
   "theme": {
-    "name": "Saga"
+    "name": "ghostium"
   },
   "urls": {
     "site": "http://blog.rankinrez.net",
     "hubpress": "http://blog.rankinrez.net",
-    "theme": "//blog.rankinrez.net/themes/casper",
+    "theme": "//blog.rankinrez.net/themes/saga",
     "images": "http://blog.rankinrez.net/images"
   },
   "initialisationConfigComponent": {
