@@ -73,7 +73,7 @@ $TTL 60
 
 Note that for each domain I have included a record for the domain itself, and also a wildcard to catch all sub-domains.  In each case they are listed as CNAME records pointing to rpz-passthru, which is the RPZ syntax to tell Bind to allow queries for them.
 
-The second RPZ zone file is created as follows.  This is configured for all sub-domains of the root zone, with a CNAME pointing to "." (which tells RPZ to return NXDOMAIN for such a lookup).  As the trailing dot (root zone) is left out of entries in RPZ zones, an asterix on it's own is all that is needed to represent subdomains of the DNS root:
+The second RPZ zone file is created as follows.  This is configured for all sub-domains of the root zone, with a CNAME pointing to "." (which tells Bind to return NXDOMAIN to any queries on it).  As the trailing dot (root zone) is left out of entries in RPZ zones, an asterix on it's own is all that is needed to represent subdomains of the DNS root:
 
 _/etc/bind/db.rpz_:
 ....
