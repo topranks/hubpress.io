@@ -148,6 +148,7 @@ Finally on the TV I changed the DNS server and sure enough the TV thinks somethi
 
 image::https://cloud.githubusercontent.com/assets/4465905/26027929/bd59e8b2-380e-11e7-81b1-b8b2b8fd2ffe.JPG[Samsung Error Message]
 
+
 So far so good, and yes the Netflix app still works fine.  Looking closely at my Bind logs I can see what's happening:
 
 ....
