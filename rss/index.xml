@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://topranks.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sat, 13 May 2017 18:09:11 GMT</lastBuildDate><atom:link href="https://topranks.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://topranks.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sat, 13 May 2017 18:13:36 GMT</lastBuildDate><atom:link href="https://topranks.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>I recently got a Samsung 'smart' TV which is very nice to look at.</p>
 </div>
 <div class="paragraph">
-<p>Unfortunately there have been numerous privacy issues with smart TV&#8217;s of all kinds, and Samsung in <a href="http://www.bbc.com/news/technology-31296188">particular</a>.  So to be safe I initially decided to block the TV completely from connecting to the internet, by blocking it at my router.</p>
+<p>Unfortunately there have been numerous privacy issues with smart TV&#8217;s of all kinds, and Samsung in <a href="http://www.bbc.com/news/technology-31296188">particular</a>.  So to be safe I initially decided to block the TV completely from connecting to the internet, using an ACL on my router.</p>
 </div>
 <div class="paragraph">
 <p>As it turns out however, the built-in Netflix app on the TV is my only option for 4k now (HTPC was out due to not having a Kaby Lake chip).</p>
@@ -87,7 +87,8 @@
                       1H  ; retry
                       1W  ; expiry
                       1H) ; minimum
-              IN    NS    localhost.
+
+                      IN     NS      localhost.
 
  netflix.com                 CNAME   rpz-passthru.
  *.netflix.com               CNAME   rpz-passthru.
@@ -119,7 +120,7 @@
                      1H) ; minimum
              IN    NS    localhost.
 
-* CNAME   .</pre>
+*                  CNAME   .</pre>
 </div>
 </div>
 <div class="paragraph">
