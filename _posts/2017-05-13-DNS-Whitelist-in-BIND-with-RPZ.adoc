@@ -45,7 +45,7 @@ The Bind server needs to be configured as authorititive master for these zones, 
     allow-query { none; };
  };
 
-As can be seen the zone definitions reference the location of the zone file for each.  The files are created as follows, using the RPZ syntax.  The first zone, rpz.whitelist, lists the domains I had worked out Netflix used:
+As can be seen the zone definitions reference the location of the zone files for each.  The files are created as follows, using the RPZ syntax.  The first zone, rpz.whitelist, lists the domains I had worked out Netflix used:
 
 _/etc/bind/db.rpz.whitelist_:
 ....
