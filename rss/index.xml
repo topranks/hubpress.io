@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://topranks.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sat, 13 May 2017 17:11:13 GMT</lastBuildDate><atom:link href="https://topranks.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>I recently got a Samsung 'smart' TV which is very nice to look at.</p>
+</div>
+<div class="paragraph">
+<p>Unfortunately there have been numerous privacy issues with smart TV&#8217;s of all kinds, and Samsung in <a href="http://www.bbc.com/news/technology-31296188">particular</a>.  So I initially decided to block the TV completely from connecting to any external internet resources with an access list on my router.</p>
+</div>
+<div class="paragraph">
+<p>As it turns out however, the built-in Netflix app on the TV is the only way I can watch true UHD (10bit colour) 4k content on the TV (don&#8217;t get me started!)</p>
+</div>
+<div class="paragraph">
+<p>So I found myself in a situation where I needed to allow the TV to connect out to the internet, and had to allow it on the router.</p>
+</div>
+<div class="paragraph">
+<p>But this got me thinking - could I somehow limit it&#8217;s access to just Netflix?  I modified the router ACL to allow it talk to all the IPv4 prefixes announced by AS2906 [Netflix Streaming Services Inc.]  This unfortunately didn&#8217;t work, without looking too deeply it seemed Akamai was involved in at least some of the traffic.</p>
+</div>
+<div class="paragraph">
+<p>Ruling out cumbersome IP based blocking I began to wonder could I perhaps limit it&#8217;s access by restricting the domain names it could resolve?</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_enter_dns_rpz">Enter DNS RPZ</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I am relatively familiar with Bind having used it down through the years, and one feature in particular suggested it might help - Response Policy Zones.</p>
+</div>
+<div class="paragraph">
+<p>Basically RPZ can be used to create a DNS "firewall," limiting what domains can be resolved.  The problem I had</p>
+</div>
+</div>
+</div>]]></description><link>https://topranks.github.io/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html</link><guid isPermaLink="true">https://topranks.github.io/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html</guid><dc:creator><![CDATA[Cathal Mooney]]></dc:creator><pubDate>Sat, 13 May 2017 00:00:00 GMT</pubDate></item></channel></rss>
