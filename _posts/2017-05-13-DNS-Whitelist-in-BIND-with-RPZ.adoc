@@ -1,6 +1,8 @@
+
+
 = DNS Whitelist in BIND with RPZ
 image::/images/rezsez.jpg[rezsez]
-:hp-tags: DNS, Filtering, Firewall, Security
+:hp-tags: DNS, Filtering, Firewall, Security, Netflix, SmartTV
 
 Restricting DNS queries to a specific list of domains.
 
