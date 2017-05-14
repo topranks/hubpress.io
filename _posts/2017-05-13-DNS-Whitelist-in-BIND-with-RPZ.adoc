@@ -144,7 +144,7 @@ www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.174.58
 
 === Additions for my Smart TV case
 
-In addition to the above I changed the ACL on for traffic coming from the TV to only allow TCP on ports 80 and 443.  This is enough for Netflix, but importantly blocks the TV from using any external DNS (even in normal circumstances it looks like it uses 8.8.8.8 in addition to any DNS server you give it yourself.)
+In addition to the above I changed the ACL for traffic coming from the TV to only allow TCP on ports 80 and 443.  This is enough for Netflix, but importantly blocks the TV from using any external DNS (even in normal circumstances it looks like it uses 8.8.8.8 in addition to any DNS server you give it yourself.)
 
 Finally on the TV I changed the DNS server and sure enough the TV thinks something is wrong with DNS:
 
