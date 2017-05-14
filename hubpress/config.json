@@ -6,12 +6,12 @@
     "cname": ""
   },
   "theme": {
-    "name": "casper"
+    "name": "ghostium"
   },
   "urls": {
     "site": "https://topranks.github.io",
     "hubpress": "https://topranks.github.io",
-    "theme": "//topranks.github.io/themes/ghostium",
+    "theme": "//topranks.github.io/themes/casper",
     "images": "https://topranks.github.io/images"
   },
   "initialisationConfigComponent": {
@@ -28,7 +28,7 @@
     "title": "REZ SEZ",
     "description": "Musings on technology, life and everything in between.",
     "logo": "",
-    "cover": "images/rezsez3.jpg",
+    "cover": "",
     "delay": "",
     "postsPerPage": "",
     "googleAnalytics": "",
