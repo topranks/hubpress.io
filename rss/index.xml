@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[REZ SEZ]]></title><description><![CDATA[Musings on technology, life and everything in between.]]></description><link>http://blog.rankinrez.net</link><generator>RSS for Node</generator><lastBuildDate>Sun, 14 May 2017 11:18:07 GMT</lastBuildDate><atom:link href="http://blog.rankinrez.net/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[REZ SEZ]]></title><description><![CDATA[Musings on technology, life and everything in between.]]></description><link>http://blog.rankinrez.net</link><generator>RSS for Node</generator><lastBuildDate>Sun, 14 May 2017 11:20:05 GMT</lastBuildDate><atom:link href="http://blog.rankinrez.net/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Restricting DNS queries to a specific list of domains.</p>
@@ -181,7 +181,7 @@ www.eu-west-1.prodaa.netflix.com. 60 IN	A	52.208.174.58</pre>
 <div class="sect2">
 <h3 id="_additions_for_my_smart_tv_case">Additions for my Smart TV case</h3>
 <div class="paragraph">
-<p>In addition to the above I changed the ACL on for traffic coming from the TV to only allow TCP on ports 80 and 443.  This is enough for Netflix, but importantly blocks the TV from using any external DNS (even in normal circumstances it looks like it uses 8.8.8.8 in addition to any DNS server you give it yourself.)</p>
+<p>In addition to the above I changed the ACL for traffic coming from the TV to only allow TCP on ports 80 and 443.  This is enough for Netflix, but importantly blocks the TV from using any external DNS (even in normal circumstances it looks like it uses 8.8.8.8 in addition to any DNS server you give it yourself.)</p>
 </div>
 <div class="paragraph">
 <p>Finally on the TV I changed the DNS server and sure enough the TV thinks something is wrong with DNS:</p>
