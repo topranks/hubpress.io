@@ -1,9 +1,9 @@
 
 
 = DNS Whitelist in BIND with RPZ
-image::/images/rezsez.jpg[rezsez]
 :hp-tags: DNS, Filtering, Firewall, Security, Netflix, SmartTV
 
+image::/images/rezsez.jpg[rezsez]
 Restricting DNS queries to a specific list of domains.
 
 I recently got a Samsung 'smart' TV which is very nice to look at.
