@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[REZ SEZ]]></title><description><![CDATA[Musings on technology, life and everything in between.]]></description><link>http://blog.rankinrez.net</link><generator>RSS for Node</generator><lastBuildDate>Sun, 14 May 2017 11:28:09 GMT</lastBuildDate><atom:link href="http://blog.rankinrez.net/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[REZ SEZ]]></title><description><![CDATA[Musings on technology, life and everything in between.]]></description><link>http://blog.rankinrez.net</link><generator>RSS for Node</generator><lastBuildDate>Sun, 14 May 2017 16:38:43 GMT</lastBuildDate><atom:link href="http://blog.rankinrez.net/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Scan subnets for Microsoft SMBv1 Vulnerability]]></title><description><![CDATA[<div class="imageblock">
+<div class="content">
+<img src="/images/rezsez.jpg" alt="rezsez">
+</div>
+</div>
+<div class="paragraph">
+<p>I found a great tool for checking if a Windows machine is vulnerable to the Eternalblue / MS17-010 exploit by RiskSense earlier on.</p>
+</div>
+<div class="paragraph">
+<p>The tool is great, however it only checks a single IP address, so I forked and made a quick modification so it will scan entire subnets, expressed in CIDR notation.  You can get it here:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/topranks/MS17-010_SUBNET" class="bare">https://github.com/topranks/MS17-010_SUBNET</a></p>
+</div>]]></description><link>http://blog.rankinrez.net/2017/05/14/Scan-subnets-for-Microsoft-SM-B1-Vulnerability.html</link><guid isPermaLink="true">http://blog.rankinrez.net/2017/05/14/Scan-subnets-for-Microsoft-SM-B1-Vulnerability.html</guid><category><![CDATA[Security]]></category><category><![CDATA[Python]]></category><category><![CDATA[Ransomeware]]></category><category><![CDATA[SMBv1]]></category><category><![CDATA[Eternalblue]]></category><category><![CDATA[MS17-010]]></category><category><![CDATA[Networking]]></category><dc:creator><![CDATA[Cathal Mooney]]></dc:creator><pubDate>Sun, 14 May 2017 00:00:00 GMT</pubDate></item><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
