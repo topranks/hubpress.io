@@ -9,10 +9,10 @@
     "name": "ghostium"
   },
   "urls": {
-    "site": "http://blog.rankinrez.net",
-    "hubpress": "https://blog.rankinrez.net",
-    "theme": "//blog.rankinrez.net/themes/ghostium",
-    "images": "http://blog.rankinrez.net/images"
+    "site": "https://topranks.github.io",
+    "hubpress": "https://topranks.github.io",
+    "theme": "//topranks.github.io/themes/ghostium",
+    "images": "https://topranks.github.io/images"
   },
   "initialisationConfigComponent": {
     "name": "initialise-configuration",
