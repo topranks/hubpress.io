@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[REZ SEZ]]></title><description><![CDATA[Musings on technology, life and everything in between.]]></description><link>http://blog.rankinrez.net</link><generator>RSS for Node</generator><lastBuildDate>Sun, 14 May 2017 11:08:00 GMT</lastBuildDate><atom:link href="http://blog.rankinrez.net/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[REZ SEZ]]></title><description><![CDATA[Musings on technology, life and everything in between.]]></description><link>http://blog.rankinrez.net</link><generator>RSS for Node</generator><lastBuildDate>Sun, 14 May 2017 11:18:07 GMT</lastBuildDate><atom:link href="http://blog.rankinrez.net/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[DNS Whitelist in BIND with RPZ]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Restricting DNS queries to a specific list of domains.</p>
@@ -16,7 +16,7 @@
 <p>So I ended up allowing the TV get out to the internet, despite my misgivings.</p>
 </div>
 <div class="paragraph">
-<p>But this got me thinking - could I somehow limit it&#8217;s access to just Netflix?  I initally tried an IP-based ACL on the router, but there were some issues with that so I began to wonder was there a DNS-based approach I could take?</p>
+<p>But this got me thinking - could I somehow limit its access to just Netflix?  I initally tried an IP-based ACL on the router, but there were some issues with that so I began to wonder was there a DNS-based approach I could take?</p>
 </div>
 </div>
 </div>
@@ -98,7 +98,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Note that for each domain I have included the 'apex' record, and also a wildcard to catch all sub-domains.  In each case they are listed as CNAME records pointing to rpz-passthru, which is the RPZ syntax to tell Bind to allow queries for them.</p>
+<p>Note that for each domain I have included a record for the domain itself, and also a wildcard entry to catch all sub-domains.  In each case they are listed as CNAME records pointing to rpz-passthru, which is the RPZ syntax to tell Bind to allow queries for them.</p>
 </div>
 <div class="paragraph">
 <p>The second RPZ zone file is created as follows.  This is configured for all sub-domains of the root zone, with a CNAME pointing to "." (which tells RPZ to return NXDOMAIN for such a lookup).  As the trailing dot (root zone) is left out of entries in RPZ zones, an asterix on it&#8217;s own is all that is needed to represent subdomains of the DNS root:</p>

@@ -38,9 +38,9 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/main.min.css?v=1494760080700"/>
-    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/custom.css?v=1494760080700"/>
-    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1494760080700"/>
+    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/main.min.css?v=1494760687758"/>
+    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/custom.css?v=1494760687758"/>
+    <link rel="stylesheet" href="//blog.rankinrez.net/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1494760687758"/>
 
 
 
@@ -70,7 +70,7 @@
       GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
     </script>
 
-    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/head-scripts.min.js?v=1494760080700"></script>
+    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/head-scripts.min.js?v=1494760687758"></script>
 
     <link rel="canonical" href="http://blog.rankinrez.net/2017/05/13/DNS-Whitelist-in-BIND-with-RPZ.html" />
     <meta name="referrer" content="origin" />
@@ -197,7 +197,7 @@
 <p>So I ended up allowing the TV get out to the internet, despite my misgivings.</p>
 </div>
 <div class="paragraph">
-<p>But this got me thinking - could I somehow limit it&#8217;s access to just Netflix?  I initally tried an IP-based ACL on the router, but there were some issues with that so I began to wonder was there a DNS-based approach I could take?</p>
+<p>But this got me thinking - could I somehow limit its access to just Netflix?  I initally tried an IP-based ACL on the router, but there were some issues with that so I began to wonder was there a DNS-based approach I could take?</p>
 </div>
 </div>
 </div>
@@ -279,7 +279,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Note that for each domain I have included the 'apex' record, and also a wildcard to catch all sub-domains.  In each case they are listed as CNAME records pointing to rpz-passthru, which is the RPZ syntax to tell Bind to allow queries for them.</p>
+<p>Note that for each domain I have included a record for the domain itself, and also a wildcard entry to catch all sub-domains.  In each case they are listed as CNAME records pointing to rpz-passthru, which is the RPZ syntax to tell Bind to allow queries for them.</p>
 </div>
 <div class="paragraph">
 <p>The second RPZ zone file is created as follows.  This is configured for all sub-domains of the root zone, with a CNAME pointing to "." (which tells RPZ to return NXDOMAIN for such a lookup).  As the trailing dot (root zone) is left out of entries in RPZ zones, an asterix on it&#8217;s own is all that is needed to represent subdomains of the DNS root:</p>
@@ -452,7 +452,7 @@ Apr 20 17:42:29 dnsvm named[7369]: 20-Apr-2017 17:42:29.033 rpz: info: client 19
        
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
-    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/foot-scripts.min.js?v=1494760080700"></script>
+    <script src="//blog.rankinrez.net/themes/ghostium/assets/js/foot-scripts.min.js?v=1494760687758"></script>
 
 
   </body>
