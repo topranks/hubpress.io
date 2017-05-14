@@ -6,7 +6,7 @@
     "cname": ""
   },
   "theme": {
-    "name": "ghostium"
+    "name": "casper"
   },
   "urls": {
     "site": "https://topranks.github.io",
@@ -28,7 +28,7 @@
     "title": "REZ SEZ",
     "description": "Musings on technology, life and everything in between.",
     "logo": "",
-    "cover": "",
+    "cover": "images/rezsez3.jpg",
     "delay": "",
     "postsPerPage": "",
     "googleAnalytics": "",
