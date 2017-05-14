@@ -11,7 +11,7 @@
   "urls": {
     "site": "https://topranks.github.io",
     "hubpress": "https://topranks.github.io",
-    "theme": "//topranks.github.io/themes/casper",
+    "theme": "//topranks.github.io/themes/ghostium",
     "images": "https://topranks.github.io/images"
   },
   "initialisationConfigComponent": {
@@ -32,7 +32,7 @@
     "delay": "",
     "postsPerPage": "",
     "googleAnalytics": "",
-    "disqus": ""
+    "disqus": "topranks"
   },
   "socialnetwork": {
     "email": "",
